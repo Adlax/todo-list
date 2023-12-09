@@ -29,10 +29,17 @@ const App = () => {
 		}));
 	};
 
+	const handleCancel = () => {
+		setProjectsState((oldState) => ({
+			...oldState,
+			selectedProjectId: undefined,
+		}));
+	};
+
 	let content;
 
 	if (projectsState.selectedProjectId === null) {
-		content = <NewProject saveProject={saveProject} />;
+		content = <NewProject saveProject={saveProject} handleCancel={handleCancel} />;
 	} else if (projectsState.selectedProjectId === undefined) {
 		content = <NoProject handleNewProject={handleNewProject} />;
 	}
