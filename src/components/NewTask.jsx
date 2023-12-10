@@ -10,6 +10,9 @@ const NewTask = ({ ...rest }) => {
 	};
 
 	const localHandleAddTask = () => {
+		if (inputTask.trim() === "") {
+			return;
+		}
 		setInputTask("");
 		handleAddTask(inputTask);
 	};

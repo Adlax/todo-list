@@ -24,8 +24,12 @@ const App = () => {
 		}));
 	};
 
-	const handleDeleteTask = () => {
-		console.log("Delete task");
+	const handleDeleteTask = (id) => {
+		// console.log("Delete task");
+		setProjectsState((oldState) => ({
+			...oldState,
+			tasks: oldState.tasks.filter((task) => task.id !== id),
+		}));
 	};
 
 	const handleNewProject = () => {
@@ -86,11 +90,16 @@ const App = () => {
 		content = <NoProject handleNewProject={handleNewProject} />;
 	}
 
-	console.log(projectsState);
+	// console.log(projectsState);
 
 	return (
 		<main className="h-screen my-8 flex gap-8">
-			<Sidebar handleNewProject={handleNewProject} projects={projectsState.projects} handleSelectProject={handleSelectProject} />
+			<Sidebar
+				handleNewProject={handleNewProject}
+				projects={projectsState.projects}
+				handleSelectProject={handleSelectProject}
+				selectedProjectId={projectsState.selectedProjectId}
+			/>
 			{content}
 		</main>
 	);
